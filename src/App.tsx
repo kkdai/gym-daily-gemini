@@ -51,23 +51,25 @@ const App: React.FC = () => {
 
   return (
     <WorkoutsProvider>
-      <Container>
+      <div className="main-container">
         <Nav variant="tabs" defaultActiveKey="dashboard" onSelect={(k) => handleNav(k as View)}>
           <Nav.Item>
             <Nav.Link eventKey="dashboard">儀表板</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="workout-form">新增訓練</Nav.Link>
+            <Nav.Link eventKey="workout-form">新增</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="quick-add">快速新增</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="weekly-summary">每週總結</Nav.Link>
+            <Nav.Link eventKey="weekly-summary">總結</Nav.Link>
           </Nav.Item>
         </Nav>
-        <div className="mt-4">{renderView()}</div>
-      </Container>
+        <div className="card-futuristic">
+          {renderView()}
+        </div>
+      </div>
     </WorkoutsProvider>
   );
 };

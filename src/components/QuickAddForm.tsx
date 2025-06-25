@@ -1,6 +1,6 @@
 // src/components/QuickAddForm.tsx
 import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import useWorkouts from '../hooks/useWorkouts';
 import { parseWorkoutText } from '../utils/parser';
 import { Workout } from '../types/types';
@@ -33,27 +33,29 @@ const QuickAddForm: React.FC<QuickAddFormProps> = ({ onSave }) => {
   };
 
   return (
-    <Container>
-      <h1 className="my-4">快速新增</h1>
+    <div>
+      <h2 className="card-title mb-4">快速新增</h2>
       <Form>
         <Form.Group className="mb-3">
           <Form.Control
             as="textarea"
-            rows={10}
+            rows={8}
             placeholder="貼上你的訓練日誌..."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
         </Form.Group>
-        <Button variant="secondary" onClick={handlePreview} className="me-2">
-          預覽
-        </Button>
-        <Button variant="primary" onClick={handleSave} disabled={!parsedWorkout}>
-          儲存訓練
-        </Button>
+        <div className="d-grid gap-2">
+          <Button variant="secondary" onClick={handlePreview}>
+            預覽
+          </Button>
+          <Button variant="primary" onClick={handleSave} disabled={!parsedWorkout}>
+            儲存訓練
+          </Button>
+        </div>
       </Form>
       {parsedWorkout && <WorkoutPreview workout={parsedWorkout} />}
-    </Container>
+    </div>
   );
 };
 

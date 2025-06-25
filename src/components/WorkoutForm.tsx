@@ -1,6 +1,6 @@
 // src/components/WorkoutForm.tsx
 import React, { useState, useEffect } from 'react';
-import { Container, Form, Button, ListGroup } from 'react-bootstrap';
+import { Form, Button, ListGroup } from 'react-bootstrap';
 import { Workout, Exercise } from '../types/types';
 import useWorkouts from '../hooks/useWorkouts';
 import ExerciseForm from './ExerciseForm';
@@ -47,8 +47,8 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workoutId, onSave }) => {
   };
 
   return (
-    <Container>
-      <h1 className="my-4">{workoutId ? '編輯' : '新增'}訓練</h1>
+    <div>
+      <h2 className="card-title mb-4">{workoutId ? '編輯訓練' : '新增訓練'}</h2>
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>日期</Form.Label>
@@ -59,8 +59,8 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workoutId, onSave }) => {
           />
         </Form.Group>
 
-        <h3 className="my-4">練習</h3>
-        <ListGroup className="mb-4">
+        <h4 className="my-3">練習</h4>
+        <ListGroup variant="flush" className="mb-4">
           {exercises.map((ex) => (
             <ListGroup.Item key={ex.id}>
               {ex.name} - 
@@ -71,7 +71,7 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workoutId, onSave }) => {
 
         <ExerciseForm onAddExercise={handleAddExercise} />
 
-        <Form.Group className="mb-3">
+        <Form.Group className="my-3">
           <Form.Label>筆記</Form.Label>
           <Form.Control
             as="textarea"
@@ -81,11 +81,11 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workoutId, onSave }) => {
           />
         </Form.Group>
 
-        <Button variant="primary" onClick={handleSave}>
+        <Button variant="primary" onClick={handleSave} className="w-100">
           儲存訓練
         </Button>
       </Form>
-    </Container>
+    </div>
   );
 };
 

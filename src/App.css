@@ -1,56 +1,122 @@
 /* src/App.css */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arial&display=swap');
 
 body {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  font-family: 'Noto Sans TC', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #e0e7ff;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
 }
 
-.card {
-  background-color: #2a2a2a;
-  border: 1px solid #444;
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.card-title {
-  color: #00aaff;
+.main-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.card-futuristic {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.7);
+  padding: 1.5rem;
+}
+
+.card-futuristic .card-title {
+  color: #fff;
+  font-weight: bold;
+}
+
+.card-futuristic .card-subtitle {
+  color: #e0e7ff;
 }
 
 .btn-primary {
-  background-color: #00aaff;
-  border-color: #00aaff;
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  border-radius: 9999px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
 }
 
 .btn-secondary {
-  background-color: #444;
-  border-color: #444;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.nav-tabs .nav-item {
+  margin: 0 0.5rem;
 }
 
 .nav-tabs .nav-link {
-  color: #ffffff;
+  color: #e0e7ff;
+  border: none;
+  background: transparent;
+  border-radius: 8px 8px 0 0;
+  padding: 0.5rem 1rem;
 }
 
 .nav-tabs .nav-link.active {
-  background-color: #2a2a2a;
-  border-color: #444 #444 #2a2a2a;
-  color: #00aaff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 3px solid #3b82f6;
 }
 
 .form-control, .form-select {
-  background-color: #2a2a2a;
-  color: #ffffff;
-  border: 1px solid #444;
+  background: rgba(0, 0, 0, 0.2);
+  color: #e0e7ff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
 }
 
 .form-control:focus, .form-select:focus {
-  background-color: #2a2a2a;
-  color: #ffffff;
-  border-color: #00aaff;
-  box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
 }
 
 .list-group-item {
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  color: #ffffff;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 0;
+  color: #e0e7ff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #fff;
 }

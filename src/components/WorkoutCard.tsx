@@ -1,30 +1,24 @@
 // src/components/WorkoutCard.tsx
 import React from 'react';
 import { Workout } from '../types/types';
-import { Card, ListGroup } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 
 interface WorkoutCardProps {
   workout: Workout;
+  onEdit: () => void;
 }
 
-const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout }) => {
+const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout, onEdit }) => {
   return (
-    <Card className="mb-3">
-      <Card.Body>
-        <Card.Title>{workout.title || workout.date}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{workout.date}</Card.Subtitle>
-        <ListGroup variant="flush">
-          {workout.exercises.map((e) => (
-            <ListGroup.Item key={e.id}>
-              {e.name} - 
-              {e.type === '有氧' ? ` ${e.duration} 分鐘` : ` ${e.weight}${e.unit} x ${e.reps} x ${e.sets}`}
-              {e.notes && <small className="d-block text-muted">{e.notes}</small>}
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-        {workout.notes && <Card.Text className="mt-3">{workout.notes}</Card.Text>}
-      </Card.Body>
-    </Card>
+    <ListGroup.Item className="d-flex justify-content-between align-items-center">
+      <div>
+        <h5 className="mb-1">{workout.title || new Date(workout.date).toLocaleDateString('zh-TW')}</h5>
+        <small>{workout.exercises.map(e => e.name).join(', ')}</small>
+      </div>
+      <Button variant="secondary" size="sm" onClick={onEdit}>
+        查看
+      </Button>
+    </ListGroup.Item>
   );
 };
 

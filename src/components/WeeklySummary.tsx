@@ -1,6 +1,6 @@
 // src/components/WeeklySummary.tsx
 import React, { useState, useMemo } from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Row, Col, Button, ListGroup } from 'react-bootstrap';
 import useWorkouts from '../hooks/useWorkouts';
 import { ExerciseType, Workout } from '../types/types';
 
@@ -48,49 +48,47 @@ const WeeklySummary: React.FC = () => {
   }, [workouts, week]);
 
   return (
-    <Container>
-      <h1 className="my-4">每週總結</h1>
-      <Row className="mb-4">
+    <div>
+      <h2 className="card-title mb-4">每週總結</h2>
+      <Row className="mb-4 align-items-center">
         <Col>
-          <Button onClick={() => setWeek(new Date(week.setDate(week.getDate() - 7)))}>
-            上一週
+          <Button variant="secondary" onClick={() => setWeek(new Date(week.setDate(week.getDate() - 7)))}>
+            &lt;
           </Button>
         </Col>
         <Col className="text-center">
-          <h4>{week.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' })}</h4>
+          <h5 className="mb-0">{week.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long' })}</h5>
         </Col>
         <Col className="text-end">
-          <Button onClick={() => setWeek(new Date(week.setDate(week.getDate() + 7)))}>
-            下一週
+          <Button variant="secondary" onClick={() => setWeek(new Date(week.setDate(week.getDate() + 7)))}>
+            &gt;
           </Button>
         </Col>
       </Row>
 
-      <Card className="mb-4">
-        <Card.Body>
-          <Card.Title>有氧總結</Card.Title>
-          <Card.Text>總跑步時間: {totalRunningTime} 分鐘</Card.Text>
-        </Card.Body>
-      </Card>
+      <div className="mb-4">
+        <h4 className="card-subtitle mb-2">有氧總結</h4>
+        <p>總跑步時間: {totalRunningTime} 分鐘</p>
+      </div>
 
-      <Card>
-        <Card.Body>
-          <Card.Title>力量總結</Card.Title>
+      <div>
+        <h4 className="card-subtitle mb-2">力量總結</h4>
+        <ListGroup variant="flush">
           {Object.entries(maxWeights).map(([name, data]) => (
-            <div key={name}>
-              <h5>{name}: {data.max}{data.unit} (本週最大重量)</h5>
-              <ul>
+            <ListGroup.Item key={name}>
+              <strong>{name}:</strong> {data.max}{data.unit} (本週最大重量)
+              <ul className="mt-2">
                 {data.history.map(w => w.exercises.filter(e => e.name === name).map(e => (
                   <li key={w.id + e.id}>
-                    {new Date(w.date).toLocaleDateString('zh-TW')}: {e.weight}{e.unit} x {e.reps} x {e.sets}
+                    <small>{new Date(w.date).toLocaleDateString('zh-TW')}: {e.weight}{e.unit} x {e.reps} x {e.sets}</small>
                   </li>
                 )))}
               </ul>
-            </div>
+            </ListGroup.Item>
           ))}
-        </Card.Body>
-      </Card>
-    </Container>
+        </ListGroup>
+      </div>
+    </div>
   );
 };
 

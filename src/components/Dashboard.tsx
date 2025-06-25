@@ -1,6 +1,6 @@
 // src/components/Dashboard.tsx
 import React from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Button, ListGroup } from 'react-bootstrap';
 import useWorkouts from '../hooks/useWorkouts';
 import WorkoutCard from './WorkoutCard';
 
@@ -13,22 +13,23 @@ interface DashboardProps {
     const { workouts } = useWorkouts();
   
     return (
-      <Container>
-        <h1 className="my-4">健身日誌</h1>
-        <Button variant="primary" className="mb-4" onClick={onAddWorkout}>
-          新增訓練
-        </Button>
-        <div>
-          {workouts.map((workout) => (
-            <div key={workout.id}>
-              <WorkoutCard workout={workout} />
-              <Button variant="secondary" size="sm" onClick={() => onEditWorkout(workout.id)}>
-                編輯
-              </Button>
-            </div>
-          ))}
+      <div>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h2 className="card-title mb-0">訓練日誌</h2>
+          <Button variant="primary" onClick={onAddWorkout}>
+            新增
+          </Button>
         </div>
-      </Container>
+        <ListGroup variant="flush">
+          {workouts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((workout) => (
+            <WorkoutCard 
+              key={workout.id} 
+              workout={workout} 
+              onEdit={() => onEditWorkout(workout.id)}
+            />
+          ))}
+        </ListGroup>
+      </div>
     );
   };
   
