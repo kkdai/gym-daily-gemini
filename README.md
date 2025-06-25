@@ -2,6 +2,10 @@
 
 FitLog is a minimalist, mobile-first web application designed for individuals to quickly and efficiently log their daily fitness activities. The primary goal is to provide a frictionless experience for users who want to track their progress in running and weightlifting without the clutter and complexity of mainstream fitness apps.
 
+
+![Google Chrome 2025-06-25 22 16 31](https://github.com/user-attachments/assets/09b02d83-ce8f-4bbc-8783-d521f6bba62c)
+
+
 ## Core Features
 
 *   **Daily Workout Logging**: Create a new workout entry for a specific date, and add multiple exercises to a single day's log.
