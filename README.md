@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# FitLog - A Minimalist Workout Logger
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FitLog is a minimalist, mobile-first web application designed for individuals to quickly and efficiently log their daily fitness activities. The primary goal is to provide a frictionless experience for users who want to track their progress in running and weightlifting without the clutter and complexity of mainstream fitness apps.
 
-## Available Scripts
+## Core Features
 
-In the project directory, you can run:
+*   **Daily Workout Logging**: Create a new workout entry for a specific date, and add multiple exercises to a single day's log.
+*   **Cardio and Strength Training**: Log cardio exercises by specifying the name and duration, and log strength training exercises by entering the weight, reps, and sets.
+*   **Quick Add with Parsing**: A "Quick Add" feature that allows users to paste a full workout log as a single block of text, which is then automatically parsed and categorized.
+*   **Data Review & Summary**: View a chronological history of all past workout logs, and see a weekly summary report to quickly understand your progress for the week.
+*   **Local Storage**: All data is saved in the browser's `localStorage`, so no user account is needed.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*   **Frontend**: React, TypeScript
+*   **Styling**: Bootstrap, CSS
+*   **Linting**: ESLint
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+To run the project locally, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  Clone the repository:
+    ```sh
+    git clone git@github.com:kkdai/gym-daily-gemini.git
+    ```
+2.  Navigate to the project directory:
+    ```sh
+    cd gym-daily-gemini
+    ```
+3.  Install the dependencies:
+    ```sh
+    npm install
+    ```
+4.  Start the development server:
+    ```sh
+    npm start
+    ```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
