@@ -1,27 +1,27 @@
 // src/components/WeeklySummary.tsx
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import useWorkouts from '../hooks/useWorkouts';
-import { Exercise, ExerciseType, Workout } from '../types/types';
+import { ExerciseType, Workout } from '../types/types';
 
 const WeeklySummary: React.FC = () => {
   const { workouts } = useWorkouts();
   const [week, setWeek] = useState(new Date());
 
-  const getWeekWorkouts = () => {
+  const { totalRunningTime, maxWeights } = useMemo(() => {
     const startOfWeek = new Date(week);
-    startOfWeek.setDate(week.getDate() - week.getDay());
+    startOfWeek.setHours(0, 0, 0, 0);
+    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+    
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 6);
+    endOfWeek.setHours(23, 59, 59, 999);
 
-    return workouts.filter((w) => {
+    const weekWorkouts = workouts.filter((w) => {
       const workoutDate = new Date(w.date);
       return workoutDate >= startOfWeek && workoutDate <= endOfWeek;
     });
-  };
 
-  const calculateSummary = () => {
-    const weekWorkouts = getWeekWorkouts();
     const totalRunningTime = weekWorkouts
       .flatMap((w) => w.exercises)
       .filter((e) => e.name.toLowerCase() === 'running' && e.type === ExerciseType.Cardio)
@@ -34,20 +34,18 @@ const WeeklySummary: React.FC = () => {
     const maxWeights: { [key: string]: { max: number, unit: string, history: Workout[] } } = {};
 
     strengthExercises.forEach((e) => {
-        const workout = weekWorkouts.find(w => w.exercises.includes(e));
-        if (!workout) return;
+      const workout = weekWorkouts.find(w => w.exercises.includes(e));
+      if (!workout) return;
 
-        if (!maxWeights[e.name] || (e.weight || 0) > maxWeights[e.name].max) {
-            maxWeights[e.name] = { max: e.weight || 0, unit: e.unit || 'lbs', history: [workout] };
-        } else if ((e.weight || 0) === maxWeights[e.name].max) {
-            maxWeights[e.name].history.push(workout);
-        }
+      if (!maxWeights[e.name] || (e.weight || 0) > maxWeights[e.name].max) {
+        maxWeights[e.name] = { max: e.weight || 0, unit: e.unit || 'lbs', history: [workout] };
+      } else if ((e.weight || 0) === maxWeights[e.name].max) {
+        maxWeights[e.name].history.push(workout);
+      }
     });
-    
-    return { totalRunningTime, maxWeights };
-  };
 
-  const { totalRunningTime, maxWeights } = calculateSummary();
+    return { totalRunningTime, maxWeights };
+  }, [workouts, week]);
 
   return (
     <Container>
